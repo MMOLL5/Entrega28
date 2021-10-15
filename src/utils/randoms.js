@@ -5,32 +5,30 @@ const between = (pmin, pmax) => {
 export const calculo = () => {
   const cant = 100000000;
   let obj = [];
-    let sum = 0;
-    let bandera=false;
+  let bandera=false;
     for (let i = 0; i < cant; i++) {
       let num = between(1, 1000);
-      for (const [key, value] of Object.entries(obj)) {
-          if (key == num){
-            value =+ 1;
-            bandera = true;
-          }
+      let key, value = 0;
+      let myObj = obj.find(el => el.clave=num);
+      if (myObj = {}){
+        let newItem = {clave: num, valor: 1};
+        obj.push(newItem);
+      }else{
+        myObj.valor =+ 1;
       }
-      if (!bandera){
-        
-      }
-
     }
-    return sum;
+    console.log('obj', obj);
+    return obj;
 
   };
   
-  process.on('message', (msg) => {
+  process.on('message' , (msg) => {
     if (msg == 'start') {
       console.log('Start randoms');
-      const sum = calculo();
+      const obj = calculo();
   
       if (process && process.send) {
-        process.send(sum);
+        process.send(obj);
       }
     }
   });

@@ -62,12 +62,12 @@ const appWSServer = initWsServer(appServer);
 appServer.listen(puerto, () => console.log('Server UP en puerto', puerto));
 
 app.get('/randoms', (req, res) => {
-
+   let cantidad = req.params.cant;
   const computo = fork(scriptPath);
   computo.send('start');
-  computo.on('message', (sum) => {
+  computo.on('message', (obj) => {
     res.json({
-      resultado: sum,
+      resultado: obj,
     });
   });
 });
